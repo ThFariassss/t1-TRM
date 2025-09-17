@@ -10,11 +10,11 @@ loop1
 	add v0, v3, 0		; senao, v0 recebe v3 
 skip
 	add v1, v1, 2		; avanca de 2 em 2 na memoria e repete
-	beq zr, zr, loop	; repete
+	beq zr, zr, loop1	; repete
 
 endloop
 	stw v0, zr, 0x90	;resultado final em 0x90
 	hlt
 array
-	12 5 29 8 1 42 15 7 9 41; array com 10 valores
+	12 5 29 8 1 42 15 7 9 41
 limit

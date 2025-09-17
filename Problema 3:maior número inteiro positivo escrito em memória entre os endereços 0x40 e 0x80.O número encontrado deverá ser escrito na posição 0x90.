@@ -1,0 +1,20 @@
+main
+	add v1, zr, array	; v1 inicio vetor
+	add v2, zr, limit	; v2 fim do vetor
+	ldw v0, v1, 0		; v0 começa em v1
+	add v1, v1, 2		; avança de 2 em 2(memoria do TRM)
+loop1
+	bge v1, v2, endloop	; se v1>=v2 termina
+	ldw v3, v1, 0		; v3 recebe o elemento atual 
+	blt v3, v0, skip	; v3 < v0, pula para o proximo
+	add v0, v3, 0		; senao, v0 recebe v3 
+skip
+	add v1, v1, 2		; avanca de 2 em 2 na memoria e repete
+	beq zr, zr, loop	; repete
+
+endloop
+	stw v0, zr, 0x90	;resultado final em 0x90
+	hlt
+array
+	12 5 29 8 1 42 15 7 9 41; array com 10 valores
+limit

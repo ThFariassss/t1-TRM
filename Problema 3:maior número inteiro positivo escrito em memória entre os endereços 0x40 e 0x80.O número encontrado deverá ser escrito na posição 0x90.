@@ -1,6 +1,6 @@
 main
 	add v1, zr, array	; v1 inicio vetor
-	add v2, zr, limit	; v2 fim do vetor
+	add v2, zr, a_limite; v2 fim do vetor
 	ldw v0, v1, 0		; v0 começa em v1
 	add v1, v1, 2		; avança de 2 em 2(memoria do TRM)
 loop1
@@ -17,4 +17,4 @@ endloop
 	hlt
 array
 	12 5 29 8 1 42 15 7 9 41
-limit
+a_limite

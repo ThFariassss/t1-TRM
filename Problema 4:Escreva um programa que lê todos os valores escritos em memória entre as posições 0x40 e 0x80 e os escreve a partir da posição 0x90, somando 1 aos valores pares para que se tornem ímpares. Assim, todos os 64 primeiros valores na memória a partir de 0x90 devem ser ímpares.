@@ -1,6 +1,6 @@
 main
 	add v1, zr, array		; v1 array inicio
-	add v2, zr, limit		; v2 final do array
+	add v2, zr, a_limit		; v2 final do array
 	add v3, zr, 0x90		; v3 memoria 0x90
 	add v4, zr, 1			; v4 recebe 1
 	add v5, zr, 2			; v5 recebe 2
@@ -28,4 +28,4 @@ array
 	85 90 92 95 97 99 100 101
 	102 105 107 110 115 118 119 120
 	125 130 135 140 145 150 155 160
-limit
+a_limit

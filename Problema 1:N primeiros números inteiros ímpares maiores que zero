@@ -1,0 +1,18 @@
+main
+	add v1, zr, 15		; v1  Quantidade de numeros impares
+	add v2, zr, 0		; v2  contador
+	add v3, zr, 1		; v3  impar 
+	add v4, zr, 0x30	; v4 salvando na memoria 
+	add v5, zr, 2		; v5 usado para incrementar o impar.
+
+loop1
+	bge v2, v1, fim_programa;  v2 >= v1, o programa se encerra
+	stw v3, v4, 0		; coloca o valor impar na memoria 0x30
+	add v3, v5		; v3 + 2
+	add v4, v5		; v4 + 2
+	add v0, zr, 1
+	add v2, v0		; v2  v2 + 1
+	beq zr, zr, loop1  	; repete loop
+
+fim_programa
+	hlt

@@ -1,0 +1,36 @@
+
+main
+
+    add a0, zr, 0x60       
+    ldw v0, a0, 0         
+    add v1, zr, 0x70       
+    add v6, zr, 0x100     
+    add v5, zr, 1          
+
+    beq v0, zr, eh_pal
+    beq v0, v5, eh_pal
+
+    add v2, v1, 0        
+    add v2, v0             
+    sub v2, v2, 1          
+
+loop
+    bge v1, v2, eh_pal     
+
+    ldb v3, v1, 0         
+    ldb v4, v2, 0          
+    bne v3, v4, nao_pal    
+
+    add v1, v1, 1         
+    sub v2, v2, 1          
+    beq zr, zr, loop
+
+eh_pal
+    add v3, zr, 1
+    stw v3, v6, 0          
+    hlt
+
+nao_pal
+    add v3, zr, 0
+    stw v3, v6, 0          
+    hlt

@@ -1,0 +1,13 @@
+main
+    add a0, zr, nome1   
+    stw a0, zr, 0xf008    
+
+    add a0, zr, nome2     
+    stw a0, zr, 0xf008    
+
+    hlt
+
+nome1
+    "Yan Pantoja\n"
+nome2
+    "Thiago Farias dos Santos\n"

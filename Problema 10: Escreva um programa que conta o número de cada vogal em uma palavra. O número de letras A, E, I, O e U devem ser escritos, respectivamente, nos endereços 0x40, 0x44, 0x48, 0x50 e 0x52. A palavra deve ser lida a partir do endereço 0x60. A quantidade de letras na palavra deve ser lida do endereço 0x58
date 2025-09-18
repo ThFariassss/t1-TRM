@@ -1,0 +1,74 @@
+
+main
+    add a0, zr, 0x58
+    ldw v0, a0, 0          ; v0 = len
+    add v1, zr, 0x60       ; v1 = ptr = início da string
+    add v2, v1, 0          ; v2 = end = ptr + len
+    add v2, v0             ;      
+
+    add v3, zr, 0          ; cntA
+    add v4, zr, 0          ; cntE
+    add v5, zr, 0          ; cntI
+    add v6, zr, 0          ; cntO
+    add v7, zr, 0          ; cntU
+
+loop
+    bge v1, v2, fim        ; acabou?
+    ldb a1, v1, 0          ; a1 
+    teq a2, a1, 65         ; 'A'
+    bne a2, zr, incA
+    teq a2, a1, 97         ; 'a'
+    bne a2, zr, incA
+    teq a2, a1, 69         ; 'E'
+    bne a2, zr, incE
+    teq a2, a1, 101        ; 'e'
+    bne a2, zr, incE
+    teq a2, a1, 73         ; 'I'
+    bne a2, zr, incI
+    teq a2, a1, 105        ; 'i'
+    bne a2, zr, incI
+    teq a2, a1, 79         ; 'O'
+    bne a2, zr, incO
+    teq a2, a1, 111        ; 'o'
+    bne a2, zr, incO
+    teq a2, a1, 85         ; 'U'
+    bne a2, zr, incU
+    teq a2, a1, 117        ; 'u'
+    bne a2, zr, incU
+
+next
+    add v1, v1, 1          ; avança para próximo char
+    beq zr, zr, loop
+
+incA
+    add v3, v3, 1
+    beq zr, zr, next
+
+incE
+    add v4, v4, 1
+    beq zr, zr, next
+
+incI
+    add v5, v5, 1
+    beq zr, zr, next
+
+incO
+    add v6, v6, 1
+    beq zr, zr, next
+
+incU
+    add v7, v7, 1
+    beq zr, zr, next
+
+fim
+    add a0, zr, 0x40
+    stw v3, a0, 0          ; A
+    add a0, zr, 0x44
+    stw v4, a0, 0          ; E
+    add a0, zr, 0x48
+    stw v5, a0, 0          ; I
+    add a0, zr, 0x50
+    stw v6, a0, 0          ; O
+    add a0, zr, 0x52
+    stw v7, a0, 0          ; U
+    hlt

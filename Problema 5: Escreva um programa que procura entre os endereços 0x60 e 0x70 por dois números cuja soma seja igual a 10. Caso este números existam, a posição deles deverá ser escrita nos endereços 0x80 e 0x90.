@@ -1,0 +1,35 @@
+main
+    add v1, zr, array     ; v1 inicio array
+    add v2, zr, a_limit     ; v2 limite do nosso arary
+    add v3, zr, 10        ; v3 var soma
+
+loop_externo
+    bge v1, v2, endloop   ;  v1 >= v2, termina.
+    ldw v4, v1            ; variavel v2 no endereço v1 
+    add v5, v1, 2         ; nova variavel usada para somar
+
+loop_interno
+    bge v5, v2, proximo_array ; v5 >= v2, avança para o prox array
+    ldw v6, v5            ; v6 na variavel v5
+    add v7, v4, 0         ; v7 no A
+    add v7, v6            ; v7 + v6
+    bne v7, v3, proximo_b_array ; array a + b != 10, vai pro B
+    add v0, zr, 0x80      ; v0 =0x80 
+    stw v1, v0, 0         ; salva  proximo_array
+    add v0, zr, 0x90      ; v0 = 0x90 
+    stw v5, v0, 0         ; salva proximo_b_array
+    beq zr, zr, endloop   ; final do loop
+
+proximo_b_array
+    add v5, v5, 2         ; vai pro b_array
+    beq zr, zr, loop_interno
+
+proximo_array
+    add v1, v1, 2         ; vai pro array
+    beq zr, zr, loop_externo
+
+endloop
+    hlt                   ; terminou o programa.
+array
+    15 10 5 3 4 1 2 5
+a_limit
